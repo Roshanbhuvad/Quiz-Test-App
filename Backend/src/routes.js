@@ -45,12 +45,16 @@ router.post("/questions", async (req, res) => {
             description
         } = req.body
         const {
+            image
+        } = req.body
+        const {
             alternatives
         } = req.body
 
         const question = await Question.create({
             description,
-            alternatives
+            alternatives,
+            image
         })
 
         return res.status(201).json(question)
@@ -68,6 +72,7 @@ router.put("/questions/:id", async (req, res) => {
         const _id = req.params.id
         const {
             description,
+            image,
             alternatives
         } = req.body
 
@@ -85,6 +90,7 @@ router.put("/questions/:id", async (req, res) => {
         } else {
             question.description = description
             question.alternatives = alternatives
+            question.image = image
             await question.save()
             return res.status(200).json(question)
         }
