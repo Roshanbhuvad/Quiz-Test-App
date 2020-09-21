@@ -2,6 +2,10 @@ const mongoose = require("mongoose")
 
 const QuestionSchema = new mongoose.Schema({
     description: String,
+    image: {
+        type: String,
+        required: false
+    },
     alternatives: [{
         text: {
             type: String,
@@ -11,6 +15,10 @@ const QuestionSchema = new mongoose.Schema({
             type: Boolean,
             required: true,
             default: false
+        },
+        image: {
+            type: String,
+            required: false
         }
     }]
 })
